@@ -19,7 +19,6 @@ $RECYCLE.BIN/
 !.vscode/launch.json
 !.vscode/extensions.json
 
-
 # Python
 
 __pycache__/
