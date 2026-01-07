@@ -1,0 +1,163 @@
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.Spotlight-V100
+.Trashes
+
+
+# Editors / IDEs
+
+.idea/
+*.iml
+
+# VS Code (ignore workspace-specific state, allow common configs)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Python
+
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+env.bak/
+pythonenv*/
+pip-wheel-metadata/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Packaging / build artifacts
+build/
+develop-eggs/
+dist/
+downloads/
+.eggs/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Testing / type checking caches
+.pytest_cache/
+.tox/
+.nox/
+coverage/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pyre/
+.pytype/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.cache
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Backend-specific virtual envs
+backend/.venv/
+backend/venv/
+backend/env/
+
+# Local databases
+*.sqlite3
+*.db
+*.db-journal
+
+# Logs and temp files
+*.log
+logs/
+log/
+tmp/
+temp/
+*.tmp
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# ML / model artifacts
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.pb
+backend/ml/**/models/**
+backend/ml/**/artifacts/**
+backend/ml/**/checkpoints/**
+backend/ml/**/runs/**
+backend/ml/**/outputs/**
+
+# Node / Frontend
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+.npm/
+.yarn/
+
+# Build outputs (various frameworks)
+dist/
+build/
+out/
+.next/
+frontend/.next/
+.nuxt/
+.svelte-kit/
+.angular/
+.astro/
+.output/
+.turbo/
+.parcel-cache/
+.vite/
+.vitepress/cache/
+.storybook-out/
+storybook-static/
+.cache/
+
+# Framework-specific frontend outputs
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/out/
+
+
+# Misc
+
+*.orig
+*~
+*.swp
+*.swo
