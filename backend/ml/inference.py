@@ -1,7 +1,7 @@
 import torch
 from torch.nn.utils.rnn import pad_sequence
 
-from .architecture import LSTMAutoencoder
+from ml.architecture import LSTMAutoencoder
 from utils.preprocessing import clean_text
 
 DEVICE = "cpu"
@@ -51,5 +51,16 @@ class AutoencoderInference:
         pred_ids = logits.argmax(dim=-1)[0].tolist()
 
         return self.decode(pred_ids)
-    
-model = AutoencoderInference(checkpoint_path="./best_autoencoder_lstm.pt")
+
+# Global model instance (to be initialized on startup)
+model = None
+
+def initialize_model(checkpoint_path: str):
+    global model
+    model = AutoencoderInference(checkpoint_path)
+    return model
+
+def get_model():
+    if model is None:
+        raise RuntimeError("Model not initialized. Call initialize_model first.")
+    return model
