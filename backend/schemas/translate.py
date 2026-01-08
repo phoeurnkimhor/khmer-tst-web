@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 class TranslateRequest(BaseModel):
     text: str
+    length: int = 100
     
     class Config:
         json_schema_extra = {

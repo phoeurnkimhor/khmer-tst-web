@@ -16,6 +16,9 @@ async def translate(req: TranslateRequest):
         # Step 1: Get user input
         original_text = req.text
         
+        if original_text is None:
+            raise HTTPException(status_code=400, detail="Text is required")
+        
         if not original_text or not original_text.strip():
             raise HTTPException(status_code=400, detail="Text cannot be empty")
         

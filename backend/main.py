@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from config import FRONTEND_URLS
+from configs.config import FRONTEND_URLS
+from configs.config import checkpoint_path
 from routers import translate
 from ml.inference import initialize_model
 import os
@@ -24,10 +25,6 @@ async def startup_event():
     """
     Initialize the ML model on application startup.
     """
-    checkpoint_path = os.getenv(
-        "MODEL_CHECKPOINT_PATH",
-        "./best_autoencoder_lstm.pt"
-    )
     try:
         initialize_model(checkpoint_path)
         print(f"✓ Model loaded successfully from {checkpoint_path}")
