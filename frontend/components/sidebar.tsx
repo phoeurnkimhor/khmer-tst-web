@@ -30,8 +30,7 @@ export function Sidebar({ onClose }: SidebarProps = {}) {
   }, [])
   
   const navItems = [
-    { href: "/", label: "Text Generator", icon: Home },
-    { href: "/training", label: "Model Training", icon: Settings },
+    { href: "/", label: "Text Generator", icon: Home }
   ]
 
   const toggleTheme = () => {
