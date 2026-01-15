@@ -65,7 +65,7 @@ export default function Page() {
             >
               <Menu className="h-4 w-4" />
             </Button>
-            <h1 className="text-lg font-semibold">Khmer TST</h1>
+            <h1 className="text-lg font-semibold">NoroAI</h1>
             <div className="w-8" /> 
           </div>
         </div>

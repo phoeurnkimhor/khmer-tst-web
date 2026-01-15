@@ -8,6 +8,7 @@ services:
     environment:
       - NEON_DB_URL=${DB_URL}
       - ENVIRONMENT=production
+      - FRONTEND_URL=http://localhost:3000,http://localhost
     volumes:
       - ./backend/best_model.pt:/app/best_model.pt:ro
     restart: unless-stopped
@@ -16,6 +17,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Expose frontend port for direct access
     depends_on:
       - backend
     restart: unless-stopped
@@ -27,7 +30,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./frontend/out:/usr/share/nginx/html:ro
+      # Remove the problematic volume mount
     depends_on:
       - frontend
       - backend
