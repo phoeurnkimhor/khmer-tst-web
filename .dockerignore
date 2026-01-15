@@ -1,6 +1,47 @@
-node_modules/
-*.pyc
+# Python
 __pycache__/
+*.pyc
 *.log
+
+# Git
 .git
+.gitignore
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# Next.js
+.next/
+out/
+build/
+
+# Environment files
+.env*
+!.env.example
+
+# IDE and OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Model and data files
+best_model.pt
 data/
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Logs
+logs/
+*.log

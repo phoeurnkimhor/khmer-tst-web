@@ -23,7 +23,6 @@ COPY --from=deps /app/node_modules ./node_modules
 # Rebuild native modules to match container environment
 RUN npm rebuild lightningcss
 
-# Build the Next.js app
 RUN npm run build
 
 # Production image
@@ -31,15 +30,13 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV PORT=3000
 
-# Copy only necessary output files
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+# Copy exported static files (Next.js exports to 'out' directory)
+COPY --from=builder /app/out ./out
+
+# Simple HTTP server to serve static files
+RUN npm install -g serve
+CMD ["serve", "-s", "out", "-l", "3000"]
 
 # Expose port 3000
 EXPOSE 3000
-
-# Start the Next.js server
-CMD ["npm", "start"]

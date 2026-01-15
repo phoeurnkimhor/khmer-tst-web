@@ -4,7 +4,8 @@ def create_predictions_table(engine):
     query = """
     CREATE TABLE IF NOT EXISTS text (
         input TEXT,
-        output TEXT
+        output TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     """
     with engine.begin() as conn:
@@ -13,8 +14,8 @@ def create_predictions_table(engine):
 
 def insert_prediction(engine, input, output):
     query = text("""
-        INSERT INTO text (input, output)
-        VALUES (:input, :output)
+        INSERT INTO text (input, output, created_at)
+        VALUES (:input, :output, CURRENT_TIMESTAMP AT TIME ZONE 'Asia/Phnom_Penh')
     """)
     with engine.begin() as conn:
         conn.execute(query, {

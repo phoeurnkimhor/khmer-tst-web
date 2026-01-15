@@ -5,7 +5,7 @@ def get_engine():
     """
     Create and return a SQLAlchemy engine
     """
-    DATABASE_URL = DB_URL  # Neon full connection URL
+    DATABASE_URL = DB_URL  
     if not DATABASE_URL:
         raise ValueError("DB_URL not found in environment variables")
 

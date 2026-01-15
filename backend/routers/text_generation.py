@@ -3,12 +3,14 @@ from schemas.text_generation import GenerateRequest, GenerateResponse
 from services.text_generation import generate_text
 from models.loader import load_model
 from databases.db_connection import get_engine
-from databases.create_save_db import insert_prediction
+from databases.create_save_db import insert_prediction, create_predictions_table
 
 router = APIRouter(prefix="/generate", tags=["Text Generation"])
 
 model = load_model('./best_model.pt')
 engine = get_engine() 
+
+create_predictions_table(engine)
 
 @router.post("/", response_model=GenerateResponse)
 def generate(req: GenerateRequest):
