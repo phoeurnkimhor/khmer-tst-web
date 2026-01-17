@@ -37,13 +37,12 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV PORT=3300
 
-# Copy exported static files (Next.js exports to 'out' directory)
-COPY --from=builder /app/out ./out
+# Copy built application
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
-# Simple HTTP server to serve static files
-RUN npm install -g serve
-CMD ["serve", "-s", "out", "-l", "3300"]
-
-# Expose port 3300
 EXPOSE 3300
+
+CMD ["node", "server.js"]

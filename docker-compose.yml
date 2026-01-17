@@ -3,8 +3,6 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ports:
-      - "8800:8800"
     environment:
       - NEON_DB_URL=${DB_URL:-}
       - ENVIRONMENT=production
@@ -12,17 +10,28 @@ services:
     volumes:
       - ./backend/best_model.pt:/app/best_model.pt:ro
     restart: unless-stopped
+    networks:
+      - traefik_default
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      args:
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
-    ports:
-      - "3300:3300"  # Map host 3000 to container 3300
     environment:
-      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+      - BACKEND_API_URL=http://backend:8800
     depends_on:
       - backend
     restart: unless-stopped
+    networks:
+      - traefik_default
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_default
+      - traefik.http.routers.frontend.rule=Host(`khmer.nonameportal.online`)
+      - traefik.http.routers.frontend.entrypoints=websecure
+      - traefik.http.routers.frontend.tls.certresolver=letsencrypt
+      - traefik.http.services.frontend.loadbalancer.server.port=3300
+
+networks:
+  traefik_default:
+    external: true
